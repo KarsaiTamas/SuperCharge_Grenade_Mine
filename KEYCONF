@@ -1,0 +1,11 @@
+ADDKEYSECTION "Starcraft Controlls" Starcraft-Controlls
+
+ADDMENUKEY "Grenade" ThrowGrenade
+ALIAS ThrowGrenade "pukename SelectGrenade"
+DEFAULTBIND G ThrowGrenade
+
+ADDMENUKEY "Drop Mine" DropMine
+ALIAS DropMine "pukename SelectMine"
+DEFAULTBIND Q DropMine
+
+

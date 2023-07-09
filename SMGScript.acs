@@ -1,0 +1,34 @@
+#library "SMGScript.acs"
+#include "zcommon.acs"
+
+
+script "SelectGrenade"(void) NET
+{
+
+	if(CheckInventory("Throwing")){terminate;}
+	if(CheckInventory("ReaperGranadeAmmo")<=0){terminate;}
+	str weapon = GetWeapon();
+	if(weapon=="SpiderMineWeapon" ||weapon=="ReaperGranade"){terminate;}
+	SetWeapon("ReaperGranade");
+	GiveInventory("Throwing", 1);
+	While (CheckInventory("Throwing"))
+		Delay(1);
+		
+	SetWeapon(weapon);
+}
+
+script "SelectMine"(void) NET
+{
+	if(CheckInventory("Throwing")){terminate;}
+	if(CheckInventory("SpiderMineAmmo")<=0){terminate;}
+	
+	str weapon = GetWeapon();
+	if(weapon=="SpiderMineWeapon" ||weapon=="ReaperGranade"){terminate;}
+	SetWeapon("SpiderMineWeapon");
+	GiveInventory("Throwing", 1);
+
+	While (CheckInventory("Throwing"))
+		Delay(1);
+		
+	SetWeapon(weapon);
+}

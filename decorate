@@ -1,0 +1,70 @@
+Actor Throwing: Inventory { Inventory.MaxAmount 1 }
+Actor TurnIntoItem: Inventory { Inventory.MaxAmount 1 }
+
+Actor DeathExplosions
+{
+seesound "weapons/rocklx"
+	States
+	{
+	Spawn: 
+		Goto Death
+	Death:
+		MISL B 8 Bright 
+		MISL C 6 Bright
+		MISL D 4 Bright 
+		Stop
+	}
+}
+
+Actor ReaperGranadeAmmo:ammo 
+{
+  Inventory.PickupMessage "Picked up reaper granades." // "Picked up a clip."
+  Inventory.Amount 1
+  Inventory.MaxAmount 30
+  Ammo.BackpackAmount 4
+  Ammo.BackpackMaxAmount 60
+  radius 16
+  scale 0.5
+  Inventory.Icon "GRADA0"
+  States
+  {
+	Spawn:
+	GRAS A -1
+	Stop
+	PickUp:
+	Gras A 00 A_GiveInventory("ReaperGranade",1)
+	stop
+  
+  }
+
+
+}
+
+Actor SpiderMineAmmo:ammo 20044
+{
+  Inventory.PickupMessage "Picked up a spider mine." // "Picked up a clip."
+  Inventory.Amount 1
+  Inventory.MaxAmount 15
+  Ammo.BackpackAmount 2
+  Ammo.BackpackMaxAmount 30
+  radius 16
+  scale 1.5
+  Inventory.Icon "SPIAA0"
+  States
+  {
+	Spawn:
+	SPII A -1
+	Stop
+	PickUp:
+	Gras A 00 A_GiveInventory("SpiderMineWeapon",1)
+	stop
+  }
+
+
+}
+#include "Actors/SpiderMineWeapon"
+#include "Actors/scspidermine"
+#include "Actors/SRocketSpawner"
+#include "Actors/ReaperGranade"
+#include "Actors/Player"
+#include "Actors/SuperchargeExtra"

@@ -1,0 +1,40 @@
+Actor TangoGrenadier2 : TangoGrenadier Replaces TangoGrenadier
+{	
+	DropItem "GraGSpiSpawner"
+	DropItem "GraGSpiSpawner"
+	DropItem "GraGSpiSpawner" 123
+
+}
+ACTOR TangoChaingunGuy2 : TangoChaingunGuy Replaces TangoChaingunGuy
+{
+	DropItem "ReaperGranadeAmmo" 150
+	Dropitem "Chaingun"
+}
+//I don't like that he can't resurrect mobs
+//Maybe I am gonna make it a server option
+//but he's weak anyways so he SHOULD ressurect mobs
+Actor TangoDiabolist2: TangoDiabolist Replaces TangoDiabolistNoResurrect{}
+Actor TangoRocketAmmo2 : TangoRocketAmmo 
+{
+	//$Title "TangoRocketAmmo"
+	Tag "Rocket"
+	Inventory.Icon "TRCKA0"
+	Inventory.PickupMessage "$TANGO_ROCKET"
+	Inventory.PickupSound "weapons/getrocket"
+  States
+  {
+  Spawn:
+    TRCK A -1 
+    Stop
+  }
+}
+Actor TangoShotgunGuy2 : TangoShotgunGuy Replaces TangoShotgunGuy
+{
+
+	DropItem "Shotgun"
+	DropItem "ReaperGranadeAmmo" 100
+}
+Actor TangoPlasmaZombieDropsClip2 : TangoPlasmaZombieDropsClip Replaces TangoPlasmaZombieDropsClip
+{
+	DropItem "ReaperGranadeAmmo" 50
+}

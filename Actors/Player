@@ -1,0 +1,23 @@
+ACTOR TangoPlayer2 : TangoPlayer replaces TangoPlayer
+{	
+	Player.DisplayName "Default"
+	Player.startitem "TangoPistol"
+	Player.startitem "TangoFist"
+	Player.StartItem "Clip", 50
+	Player.StartItem "PistolAmmo", 8
+	Player.StartItem "ShotgunAmmo", 8
+	Player.StartItem "AssaultRifleAmmo", 48
+	Player.StartItem "ScrapAmmo", 4
+	Player.StartItem "PlasmaRifleAmmo", 40
+	Player.StartItem "ReaperGranade",5
+	Player.StartItem "ReaperGranadeAmmo",5
+	Player.StartItem "SpiderMineWeapon",1
+	Player.StartItem "SpiderMineAmmo",3
+	Player.WeaponSlot 1, TangoChainsaw, TangoFist
+   	Player.WeaponSlot 2, ReaperGranade, SpiderMineWeapon, TangoPistol
+	Player.WeaponSlot 3, TangoShotgun, TangoSuperShotgun
+	Player.WeaponSlot 4, TangoAssaultRifle, TangoChaingun, TangoScrapGun
+	Player.WeaponSlot 5, TangoStomper, TangoRocketLauncher
+	Player.WeaponSlot 6, TangoPlasmaRifle
+	Player.WeaponSlot 7, TangoBFG9000
+}

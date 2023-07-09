@@ -1,0 +1,119 @@
+Actor Spawn2Token:Inventory{Inventory.MaxAmount 1}
+Actor StarcraftSpiderMineFriend
+{
+
+	damage (0)
+	+FRIENDLY
+	Health 25
+	Radius 15
+	Height 30
+	Reactiontime 100
+	meleerange 50
+	scale 1.5
+	mass 20000
+	MissileHeight 32
+	Obituary "%o was killed by a SpiderMine"
+	PainChance 10
+	Speed 10	
+	MinMissileChance 50
+	DeathSound ""
+	-COUNTKILL
+	-solid
+	+THRUSPECIES
+	+FORCERADIUSDMG
+	+NOBLOOD
+	+SHOOTABLE
+	PainChance "PickupMine", 255
+	States
+	{
+	Spawn:
+	SPII AA 0 A_ChangeFlag(missile,false)
+	SPII A 16 
+	SPIT A 0 A_JumpIfInventory("Spawn2Token",1,"Spawn2")
+	SPIT A 0 A_giveInventory("Spawn2Token",1)
+	SPIT ABC 4
+	SPIT C 4 A_PlaySound("Spiderm/Transform",5)
+	goto Spawn2
+	
+	Spawn2:
+	SPIT A 0 A_JumpIfInventory("TurnIntoItem",1,"PickupMine")
+	SPIT D 4 bright A_LookEx(LOF_NOSOUNDCHECK,1,256,0,360,"Unburrow")
+	Loop
+	//TurnIntoItem
+	PickupMine:
+	SPIT C 0 
+	SPIT C 0 A_ChangeFlag(solid,true)
+	SPIT C 4 A_PlaySound("Spiderm/Transform",5)
+	SPIT CBA 4
+	Goto Disarm
+	Unburrow:
+	SPIT C 0 
+	SPIT C 0 A_ChangeFlag(solid,true)
+	SPIT C 4 A_PlaySound("Spiderm/Transform",5)
+	SPIT CBA 4
+	Goto See
+	
+	Burrow:
+	SPIT C 0 
+	SPIT C 0 A_ChangeFlag(solid,false)
+	SPIT A 4 A_PlaySound("Spiderm/Transform",5)
+	SPIT ABC 4
+	goto Spawn2
+	
+	See:
+	SPIT A 0 A_JumpIfInventory("TurnIntoItem",1,"Disarm")
+	SPIM A 0 A_PlaySound("Spiderm/ShootS",5)
+	SPIM ABABABABAB 1 bright A_Chase("Melee")
+	SPIT D 4 bright A_LookEx(LOF_NOSOUNDCHECK,1,256,0,360,"See")
+	goto Burrow
+	
+	Melee:
+	Goto Death
+	
+	Death:
+	SPII A 2 A_PlaySound("weapons/rocklx",5)
+	SPII A 0 A_CustomMissile("PlayerSpiderMineEx",40,0)
+	SPII A 2 A_CustomMissile("DeathExplosions",random(40,60),Random(-20,20))
+	SPII A 0 A_explode
+    SPII A 0 A_SCREAM
+    SPII A 0 A_SetTranslucent(1,0)
+    SPII A 0 A_NoBlocking 
+	stop
+	
+	Disarm:
+	SPII A 0 
+	SPII A 0 A_NoBlocking 
+	SPII A 0 A_SpawnItem("SpiderMineAmmo")
+	stop
+	
+}
+}
+
+Actor PlayerSpiderMineEx : rocket
+{
+	damage (0)
+	ExplosionDamage 80
+	ExplosionRadius 128
+		
+	Projectile
+	-THRUSPECIES
+	+NOGRAVITY
+	-RANDOMIZE
+	Speed 0
+	RenderStyle "Translucent"
+	seesound ""
+	deathsound "SCMad/ShootE"
+	scale 0.3
+	DamageType PlayerMarauderRocketShot
+	States
+	{
+	Spawn:
+	MADP A 1 Bright 
+	MISL A 0 Bright A_CustomMissile("RocketTrail",Random(4,6),Random(-2,2))
+		
+	goto Death
+	Death:
+	MISL B 0 Bright A_Explode
+	Stop
+	}
+}

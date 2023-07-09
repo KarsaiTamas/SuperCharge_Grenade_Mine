@@ -1,0 +1,16 @@
+
+SCMad/ShootE SMadSE
+
+;starcraft spidermine
+
+Spiderm/ShootS SSPISS
+$volume Spiderm/ShootS 0.3
+Spiderm/Transform SSPIT
+Reaper/GrenadeE RepGE
+weapons/quickswitch		DSQSWCH
+;hand grenade
+weapons/hgrenadethrow 		DSHGREN1
+weapons/hgrenadepin			DSHGREN2
+weapons/hgrenadebounce		DSHGREN3
+weapons/hgrenadepickup		DSHGREN4
+weapons/hgrenadeex			DSHGREN5

@@ -1,0 +1,14 @@
+actor SRocketSpawner : RandomSpawner Replaces TangoRocketAmmo
+{
+
+DropItem "ReaperGranadeAmmo", 256, 85
+DropItem "SpiderMineAmmo", 256, 85
+DropItem "TangoRocketAmmo2", 256, 85
+}
+
+actor GraGSpiSpawner : RandomSpawner
+{
+
+DropItem "ReaperGranadeAmmo", 256, 128
+DropItem "SpiderMineAmmo", 256, 128
+}

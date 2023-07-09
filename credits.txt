@@ -1,0 +1,13 @@
+Mod created by Tunasz.
+The StarCraft models and sounds are made by Blizzard Entertainment®!
+Here is Blizzard's main page: https://www.blizzard.com/en-us/
+The copyrights for the StarCraft sprites and sounds are the following:
+If you use them you need to give credits to Blizzard.
+You can't use them for commercial purposes!!!
+When you write StarCraft you always write it with capital C and capital S.
+If you want to know the full copyrights you can read it here:
+https://www.blizzard.com/en-us/legal/8bcb0794-6641-4ce3-a573-8eb243bab342/blizzard-entertainment-logo-and-trademark-guidelines
+
+Got the grenade graphics and sounds from complex doom, because It fits better to supercharge
+
+Additional Credits:	id Software, Slade.	

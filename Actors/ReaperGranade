@@ -1,0 +1,139 @@
+Actor SCGrenadeReaper :grenade
+{
+	damage (20)
+	ExplosionDamage 10
+	ExplosionRadius 32
+   	Radius 2
+	Height 2
+    Speed 13
+	fastSpeed 20
+	Scale 0.4
+	SeeSound ""
+	deathsound ""
+	+MTHRUSPECIES
+	+MISSILE
+	+DONTFALL
+	+NOTELEPORT
+	-BOUNCEONWALLS
+	+CANBOUNCEWATER
+	Gravity 0.3
+	Mass 400
+	DamageType SCGrenadeReaper
+	States
+	{
+	Spawn:
+	GRAD ABCDEFGH 2 Bright 
+	Goto death
+	Death:
+	MISL BB 0 A_PlaySound("Reaper/GrenadeE")
+	MISL B 8 Bright A_Explode
+	MISL C 6 Bright
+	MISL D 4 Bright 
+	Stop
+	}
+}
+ACTOR ReaperGranade : Weapon 
+{
+	Weapon.SelectionOrder 1000
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 4
+	Weapon.slotnumber 1
+	Weapon.AmmoType "ReaperGranadeAmmo"
+	Inventory.PickupSound "weapons/hgrenadepickup"
+	radius 16
+	scale 1
+	Inventory.PickupMessage "You picked up a grenade!" // "You got the chaingun"
+	Obituary "$OB_MPCHAINGUN" // "%o was mowed down by %k's chaingun."
+	Tag "Grenade"
+    +WEAPON.NOALERT
+	States
+	{
+	Ready:
+	SPIA A 0 A_JumpIfInventory("Throwing",1,"Fire")
+	GRAN C 1 A_WeaponReady
+	Loop
+	
+	Deselect:
+	GRAN A 0 A_Lower
+	Loop
+	
+	Select:	
+	TNT1 A 0 A_PlaySound("weapons/quickswitch", CHAN_WEAPON)
+	GRAN A 0 A_Raise
+	Loop
+	Fire:
+	GRAN ABCDEFGH 2
+	GRAN I 2 A_PlayWeaponSound("weapons/hgrenadepin")
+	GRAN A 0 A_ReFire("HoldGranade")
+	Goto Throw
+
+	HoldGranade:
+	GRAN I 2
+	GRAN A 0 A_ReFire("HoldGranade")
+	//TNT1 A 0 A_PlayWeaponSound("weapons/hgrenadethrow")
+	Goto Throw
+
+	Throw:
+
+	GRAN J 1 A_TakeInventory("Throwing",1)
+	GRAN J 1 Bright A_FireCustomMissile("PlayerReaperGranade",0,1,10)
+	GRAN KLMNOPQ 2
+	Goto ready
+
+	Spawn:
+	GRAS A -1
+	Stop
+   }
+}
+
+Actor PGrenadeExp
+{
+	+nogravity
+	States
+	{
+	Spawn:
+	goto Death
+	
+	Death:
+	MISL B 0
+	MISL B 0 A_PlaySound("weapons/hgrenadeex",5)
+	MISL B 8 Bright A_Explode
+	WEMR A 0 A_AlertMonsters
+	MISL C 6 Bright
+	MISL D 4 Bright 
+	Stop
+}
+}
+Actor PlayerReaperGranade:SCGrenadeReaper
+{
+	SeeSound "weapons/hgrenadethrow"
+	BounceSound "weapons/hgrenadebounce"
+	WallBounceSound "weapons/hgrenadebounce"
+	+USEBOUNCESTATE
+	damage (40)
+	ExplosionDamage 50
+	ExplosionRadius 64
+	BounceCount 3
+	WallBounceFactor 0.16
+	BounceFactor 0.36
+	DamageType PlayerReaperGranade
+	speed 25
+	+BOUNCEONWALLS
+	States
+	{
+	Spawn:
+	GRAD ABCDEFGHABCDEFGH 4  
+	goto Death
+	Bounce:
+	TNT1 A 0 A_PlaySound("weapons/hgrenadebounce")
+	goto Spawn
+	
+	Death:
+	MISL B 0 A_SpawnItem("PGrenadeExp")
+
+	Stop
+	}
+	
+}
+
+
