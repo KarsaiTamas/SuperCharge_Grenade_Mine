@@ -1,14 +1,14 @@
 ACTOR SpiderMineWeapon : Weapon 
 {
    Weapon.SelectionOrder 1000
-   Weapon.AmmoUse 1
+   Weapon.AmmoUse 0
    Weapon.AmmoGive 3
    Weapon.slotnumber 1
    Weapon.AmmoType "SpiderMineAmmo"
    radius 16
    scale 2
    Inventory.PickupMessage "You got Spider Mine!" // "You got the chaingun"
-   Obituary "$OB_MPCHAINGUN" // "%o was mowed down by %k's chaingun."
+   Obituary "%o blown up by a spidermine" // "%o was mowed down by %k's chaingun."
    Tag "Spider Mine"
    +WEAPON.NOALERT
    +Alwayspickup
@@ -35,7 +35,7 @@ ACTOR SpiderMineWeapon : Weapon
 
 	AltFire:
 	SPIA A 0
-	SPIA A 1 A_FireCustomMissile("PickupMine",0,1,10)
+	SPIA A 1 A_FireCustomMissile("PickupMine",0,0,10)
 	Goto Ready
 	
 	HoldGranade:
@@ -45,7 +45,8 @@ ACTOR SpiderMineWeapon : Weapon
 
 	Throw:
 	SPIA D 4 A_TakeInventory("Throwing",1)
-	SPIA E 4 Bright A_FireCustomMissile("DropSpiderMineFriend",0,1,10)
+	SPIA D 4 A_TakeInventory("SpiderMineAmmo",1)
+	SPIA E 4 Bright A_FireCustomMissile("DropSpiderMineFriend",0,0,10)
 	Goto ready
 
 	Spawn:

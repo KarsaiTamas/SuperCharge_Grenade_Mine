@@ -43,7 +43,7 @@ ACTOR ReaperGranade : Weapon
 	radius 16
 	scale 1
 	Inventory.PickupMessage "You picked up a grenade!" // "You got the chaingun"
-	Obituary "$OB_MPCHAINGUN" // "%o was mowed down by %k's chaingun."
+	Obituary "%o was blown up by a grenade" // "%o was mowed down by %k's chaingun."
 	Tag "Grenade"
     +WEAPON.NOALERT
 	States
