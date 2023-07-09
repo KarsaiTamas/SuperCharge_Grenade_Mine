@@ -7,7 +7,7 @@ Actor TangoGrenadier2 : TangoGrenadier Replaces TangoGrenadier
 }
 ACTOR TangoChaingunGuy2 : TangoChaingunGuy Replaces TangoChaingunGuy
 {
-	DropItem "ReaperGranadeAmmo" 150
+	DropItem "GraGSpiSpawner" 150
 	Dropitem "Chaingun"
 }
 //I don't like that he can't resurrect mobs
@@ -32,7 +32,7 @@ Actor TangoShotgunGuy2 : TangoShotgunGuy Replaces TangoShotgunGuy
 {
 
 	DropItem "Shotgun"
-	DropItem "ReaperGranadeAmmo" 100
+	DropItem "GraGSpiSpawner" 100
 }
 Actor TangoPlasmaZombieDropsClip2 : TangoPlasmaZombieDropsClip Replaces TangoPlasmaZombieDropsClip
 {
